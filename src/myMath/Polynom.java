@@ -38,9 +38,11 @@ public class Polynom implements Polynom_able{
     }
 	
 	public Polynom(String polynom) {
-	    if (polynom.trim().replace("*","").length() > 0) {
+	    String trimmedPolynom = polynom.trim().replace("*","");
 
-            list = extractPolynomFromString(polynom);
+	    if (trimmedPolynom.length() > 0 && !(trimmedPolynom.length() == 1 && trimmedPolynom.contentEquals("0"))) {
+
+	        list = extractPolynomFromString(polynom);
             refinePolynom();
 
         } else {
@@ -306,25 +308,29 @@ public class Polynom implements Polynom_able{
         StringBuilder result = new StringBuilder();
         DecimalFormat df = new DecimalFormat("#.##");
 
-        for (int i=0;i<list.size();i++) {
+        if (list.size() == 0) {
+            result.append("0");
+        } else {
+            for (int i=0;i<list.size();i++) {
 
-            if (list.get(i).get_power() == 0) {
-                if (list.get(i).get_coefficient() >= 0 && i != 0) {
-                    result.append("+").append(df.format(list.get(i).get_coefficient()));
-                }  else {
-                    result.append(df.format(list.get(i).get_coefficient()));
-                }
-            } else if (list.get(i).get_power() == 1){
-                if (list.get(i).get_coefficient() >= 0 && i != 0) {
-                    result.append("+").append(df.format(list.get(i).get_coefficient())).append("*X");
-                }  else {
-                    result.append(df.format(list.get(i).get_coefficient())).append("*X");
-                }
-            } else {
-                if (list.get(i).get_coefficient() >= 0 && i != 0) {
-                    result.append("+").append(df.format(list.get(i).get_coefficient())).append("*X^").append(list.get(i).get_power());
+                if (list.get(i).get_power() == 0) {
+                    if (list.get(i).get_coefficient() >= 0 && i != 0) {
+                        result.append("+").append(df.format(list.get(i).get_coefficient()));
+                    }  else {
+                        result.append(df.format(list.get(i).get_coefficient()));
+                    }
+                } else if (list.get(i).get_power() == 1){
+                    if (list.get(i).get_coefficient() >= 0 && i != 0) {
+                        result.append("+").append(df.format(list.get(i).get_coefficient())).append("*X");
+                    }  else {
+                        result.append(df.format(list.get(i).get_coefficient())).append("*X");
+                    }
                 } else {
-                    result.append(df.format(list.get(i).get_coefficient())).append("*X^").append(list.get(i).get_power());
+                    if (list.get(i).get_coefficient() >= 0 && i != 0) {
+                        result.append("+").append(df.format(list.get(i).get_coefficient())).append("*X^").append(list.get(i).get_power());
+                    } else {
+                        result.append(df.format(list.get(i).get_coefficient())).append("*X^").append(list.get(i).get_power());
+                    }
                 }
             }
         }
@@ -535,5 +541,15 @@ public class Polynom implements Polynom_able{
             coefficient = Double.parseDouble(stringCoefficient);
         }
         return coefficient;
+    }
+
+    /**
+     * Get specified monom at index from list
+     * @param index
+     * @return Monom in that index
+     */
+    public Monom getMonomAt(int index) {
+        if (index > list.size() - 1) throw new NullPointerException("Monom in that index is not exist. List size is: " + list.size() + ", Index: " + index);
+        return list.get(index);
     }
 }
