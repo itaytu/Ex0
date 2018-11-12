@@ -1,5 +1,6 @@
 package myMath;
 
+import java.awt.Point;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -50,6 +51,23 @@ public class Polynom implements Polynom_able{
         }
 
     }
+	//ax^3 + bx^2 + cx + d = f(x)
+	//(4,1),(5,3),(12,-4),(20,2)
+/*	public Polynom(Point[] p) {
+		if (p.length<2) {
+			throw new RuntimeException("Can't build polynom from " + p.length + "points");
+		}
+		int pow=p.length-1;
+		for (int i = 0; i < p.length; i++) {
+			double x= p[i].getX();
+			double y= p[i].getY();
+			Polynom pn= new Polynom();
+			for (int j = 0; j < pow; j++) {
+				Monom newMonom = new Monom(x, j);
+				pn.add(newMonom);
+			}
+		}
+	}*/
 	
 	@Override
 	public double f(double x) {
@@ -218,15 +236,6 @@ public class Polynom implements Polynom_able{
 
         return list.size() == 0;
 
-		/*
-        for (Monom monom : list) {
-            double coefficient = monom.get_coefficient();
-
-            if (coefficient != 0) {
-                return false;
-            }
-        }
-	    */
     }
 
     /**

@@ -18,7 +18,10 @@ public class LinePlotTest extends JFrame {
         DataTable data2 = new DataTable(Double.class, Double.class);
         Polynom p = new Polynom ("0.2x^4-1.5x^3+3.0x^2-x-5");
         Polynom pd = new Polynom (p.derivative());
-        for (double x = -2; x <= 6; x+=0.25) {
+        double startp = -2;
+        double endp = 6;
+        double eps =0.01;
+        for (double x = startp;x <= endp; x+=0.25) {
         	if (pd.f(x)>0 && pd.f(x)<0.5 ) {
         		double y = p.f(x);
         		System.out.println("the x axis is: " + x  +" the y axis is: "+ y);
@@ -36,7 +39,17 @@ public class LinePlotTest extends JFrame {
         plot.getPointRenderers(data).get(0).setColor(color);
         plot.getPointRenderers(data2).get(0).setColor(color.RED);
         plot.getLineRenderers(data).get(0).setColor(color);
+        System.out.println("The area calculated is: " + area(p, startp, endp, eps));
     }
+    
+	public double area(Polynom p, double x0, double x1, double eps) {
+		double sum = 0;
+		for (double i = x0; i <= x1; i+=eps) {
+			if(p.f(i)<0)
+			sum += p.f(i)*eps;
+		}
+		return Math.abs(sum);
+	}
 
     public static void main(String[] args) {
         LinePlotTest frame = new LinePlotTest();
