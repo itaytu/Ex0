@@ -122,6 +122,14 @@ class PolynomTest {
 
         assertEquals(expected,p.area(-1,1,eps),0.01, "area function is wrong");
     }
+    
+    @Test
+    void area2() {
+    	Polynom p3= new Polynom("0.2x^4-1.5x^3+3.0x^2-x-5");
+    	double expected= 25.1836;
+    	double actual= p3.area2(-2, 6, 0.01);
+    	assertEquals(expected, actual, 0.01,"The function is wrong");
+    }
 
     @Test
     void iteretor() {

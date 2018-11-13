@@ -302,6 +302,23 @@ public class Polynom implements Polynom_able{
 		
 		return sum;
 	}
+	
+	/**
+	 * 
+	 * @param x0 starting point
+	 * @param x1 ending point
+	 * @param eps number of steps for the rectangles calculating the area
+	 * @return the area under the X axis and above the function
+	 */
+	
+	public double area2(double x0, double x1, double eps) {
+		double sum = 0;
+		for (double i = x0; i <= x1; i+=eps) {
+			if(this.f(i)<0)
+			sum += this.f(i)*eps;
+		}
+		return Math.abs(sum);
+	}
 
 	@Override
 	public Iterator<Monom> iteretor() {

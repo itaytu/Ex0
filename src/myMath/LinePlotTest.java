@@ -9,7 +9,16 @@ import de.erichseifert.gral.plots.lines.LineRenderer;
 import de.erichseifert.gral.plots.points.PointRenderer;
 import de.erichseifert.gral.ui.InteractivePanel;
 
+	/**
+	 * This class represents a function for calculating a 2d graph for a Polynom, this class also supports:
+	 * Finding Minimum and Maximum Points for a given Polynom
+	 * Caluclating area under the X axis and above the function in a given range
+	 * 
+	 * @author Itay Tuson and Sagi Oshri
+	 *
+	 */
 public class LinePlotTest extends JFrame {
+	
     public LinePlotTest() {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(600, 400);
@@ -39,17 +48,10 @@ public class LinePlotTest extends JFrame {
         plot.getPointRenderers(data).get(0).setColor(color);
         plot.getPointRenderers(data2).get(0).setColor(color.RED);
         plot.getLineRenderers(data).get(0).setColor(color);
-        System.out.println("The area calculated is: " + area(p, startp, endp, eps));
+        System.out.println("The area calculated is: " + p.area2(startp, endp, eps));
     }
     
-	public double area(Polynom p, double x0, double x1, double eps) {
-		double sum = 0;
-		for (double i = x0; i <= x1; i+=eps) {
-			if(p.f(i)<0)
-			sum += p.f(i)*eps;
-		}
-		return Math.abs(sum);
-	}
+
 
     public static void main(String[] args) {
         LinePlotTest frame = new LinePlotTest();
