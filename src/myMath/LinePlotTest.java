@@ -19,13 +19,12 @@ import de.erichseifert.gral.ui.InteractivePanel;
 	 */
 public class LinePlotTest extends JFrame {
 	
-    public LinePlotTest() {
+    public LinePlotTest(String s) {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(600, 400);
-
         DataTable data = new DataTable(Double.class, Double.class);
         DataTable data2 = new DataTable(Double.class, Double.class);
-        Polynom p = new Polynom ("0.2x^4-1.5x^3+3.0x^2-x-5");
+        Polynom p = new Polynom (s);
         Polynom pd = new Polynom (p.derivative());
         double startp = -2;
         double endp = 6;
@@ -54,7 +53,8 @@ public class LinePlotTest extends JFrame {
 
 
     public static void main(String[] args) {
-        LinePlotTest frame = new LinePlotTest();
+    	String s="0.2x^4-1.5x^3+3.0x^2-x-5";
+        LinePlotTest frame = new LinePlotTest(s);
         frame.setVisible(true);
     }
 }

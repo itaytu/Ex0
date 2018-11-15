@@ -16,7 +16,7 @@ import java.util.List;
  *
  */
 
-public class Polynom implements Polynom_able{
+public class Polynom implements Polynom_able {
 
 	private List<Monom> list;
 	
@@ -577,5 +577,10 @@ public class Polynom implements Polynom_able{
     public Monom getMonomAt(int index) {
         if (index > list.size() - 1) throw new NullPointerException("Monom in that index is not exist. List size is: " + list.size() + ", Index: " + index);
         return list.get(index);
+    }
+    
+    public void line() {
+    	 LinePlotTest frame = new LinePlotTest(this.toString());
+         frame.setVisible(true);
     }
 }

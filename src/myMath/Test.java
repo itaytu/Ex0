@@ -9,10 +9,8 @@ package myMath;
 public class Test {
 
     public static void main(String[] args) {
-      //  test1();
-      //  test2();
-    	Polynom p = new Polynom("5");
-		System.out.println(p.derivative());
+        test1();
+        test2();
     }
 
     /**
