@@ -13,7 +13,7 @@ import de.erichseifert.gral.ui.InteractivePanel;
 	 * This class represents a function for calculating a 2d graph for a Polynom, this class also supports:
 	 * Finding Minimum and Maximum Points for a given Polynom
 	 * Caluclating area under the X axis and above the function in a given range
-	 * 
+	 * source: http://trac.erichseifert.de/gral/wiki/Download
 	 * @author Itay Tuson and Sagi Oshri
 	 *
 	 */
